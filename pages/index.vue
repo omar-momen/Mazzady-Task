@@ -30,14 +30,13 @@
                   class="tabBtn"
                   label="Articles"
                   aria-label="Articles"
-
                 ></UButton>
                 <UButton
                   @click="changeTab('ReviewsTap')"
                   :class="{ active: current_tab === 'ReviewsTap' }"
                   class="tabBtn"
                   label="Reviews"
-                   aria-label="Reviews"
+                  aria-label="Reviews"
                 ></UButton>
               </div>
               <UButton
@@ -87,7 +86,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .tabBtn {
-  @apply h-9 w-[90px] md:w-28 justify-center border-2 rounded-xl border-gray-300 bg-transparent text-gray-500 text-sm font-normal hover:bg-secondary hover:text-whiteColor hover:border-secondary transition-all;
+  @apply h-9 w-[80px] md:w-28 justify-center border-2 rounded-xl border-gray-300 bg-transparent text-gray-500 text-sm font-normal hover:bg-secondary hover:text-whiteColor hover:border-secondary transition-all;
 }
 
 .active {
