@@ -33,24 +33,24 @@ useHead({
     {
       name: "description",
       content:
-        "Discover your dream home with DreamSpaces Realty – where exceptional properties meet unparalleled service. Explore a world of unique listings, tailored to fit every lifestyle and budget",
+        "Shop online in Egypt with Mazzadyand enjoy low prices, fast shipping, cash on delivery and easy returns on millions of items. Explore deals on electronics, fashion, groceries, home …",
     },
     {
       name: "author",
-      content: "Samh Team",
+      content: "Mazzady",
     },
     {
       name: "keywords",
-      content: "SALE, BYE, RENT, HOME",
+      content: "BYE",
     },
     {
       property: "og:title",
-      content: "Samh Realstate",
+      content: "Mazzady",
     },
     {
       property: "og:descreption",
       content:
-        "Discover your dream home with DreamSpaces Realty – where exceptional properties meet unparalleled service. Explore a world of unique listings, tailored to fit every lifestyle and budget",
+        "Shop online in Egypt with Amazon.eg and enjoy low prices, fast shipping, cash on delivery and easy returns on millions of items. Explore deals on electronics, fashion, groceries, home …",
     },
     {
       property: "og:type",
@@ -58,22 +58,21 @@ useHead({
     },
     {
       property: "og:image",
-      content:
-        "https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      content: "/images/logo.png",
     },
     {
       property: "og:url",
-      content: "http://8.213.24.120:8080/",
+      content: "https://mazzady-task.vercel.app/",
     },
 
     {
       property: "twitter:title",
-      content: "Samh Realstate",
+      content: "Mazzady",
     },
     {
       property: "twitter:descreption",
       content:
-        "Discover your dream home with DreamSpaces Realty – where exceptional properties meet unparalleled service. Explore a world of unique listings, tailored to fit every lifestyle and budget",
+        "Shop online in Egypt with Amazon.eg and enjoy low prices, fast shipping, cash on delivery and easy returns on millions of items. Explore deals on electronics, fashion, groceries, home …",
     },
     {
       property: "twitter:type",
@@ -81,12 +80,11 @@ useHead({
     },
     {
       property: "twitter:image",
-      content:
-        "https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      content: "/images/logo.png",
     },
     {
       property: "twitter:url",
-      content: "http://8.213.24.120:8080/",
+      content: "https://mazzady-task.vercel.app/",
     },
   ],
 });
