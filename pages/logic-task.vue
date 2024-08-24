@@ -81,7 +81,9 @@
           </UFormGroup>
         </template>
 
-        <UButton :loading="submit_loading" type="submit"> Submit </UButton>
+        <UButton :loading="submit_loading" type="submit" aria-label="submit">
+          Submit
+        </UButton>
       </UForm>
 
       <!-- Display Submitted Data -->

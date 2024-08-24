@@ -22,24 +22,29 @@
                   :class="{ active: current_tab === 'ProductsTap' }"
                   class="tabBtn"
                   label="Products"
+                  aria-label="Products"
                 ></UButton>
                 <UButton
                   @click="changeTab('ArticlesTap')"
                   :class="{ active: current_tab === 'ArticlesTap' }"
                   class="tabBtn"
                   label="Articles"
+                  aria-label="Articles"
+
                 ></UButton>
                 <UButton
                   @click="changeTab('ReviewsTap')"
                   :class="{ active: current_tab === 'ReviewsTap' }"
                   class="tabBtn"
                   label="Reviews"
+                   aria-label="Reviews"
                 ></UButton>
               </div>
               <UButton
                 class="h-10 px-4 fixed end-0 top-1/2 -translate-y-1/2 lg:static md:translate-y-0 lg:z-0 z-[9999]"
                 color="default"
                 label="Add Review"
+                aria-label="Add Review"
               >
                 <template #leading>
                   <Icon size="18" name="ic:round-add-circle-outline" />

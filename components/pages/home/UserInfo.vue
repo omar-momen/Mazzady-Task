@@ -48,6 +48,7 @@
       class="h-12 w-full justify-center mt-9 rounded-2xl"
       color="default"
       :label="$t('user_info.follow')"
+      :aria-label="$t('user_info.follow')"
     />
   </div>
 </template>

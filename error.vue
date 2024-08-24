@@ -14,7 +14,9 @@
           {{ errorDescription }}
         </p>
 
-        <UButton @click="handleError">{{ btn }}</UButton>
+        <UButton aria-label="Handel Error" @click="handleError">{{
+          btn
+        }}</UButton>
       </div>
     </main>
   </div>

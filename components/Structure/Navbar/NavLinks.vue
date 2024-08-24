@@ -1,15 +1,19 @@
 <template>
   <ul @click="emit('close')">
     <li>
-      <NuxtLink :to="localePath('/')">{{ $t("links.home") }}</NuxtLink>
+      <NuxtLink :to="localePath('/')" aria-label="go-to-home-page">{{
+        $t("links.home")
+      }}</NuxtLink>
     </li>
     <!-- <li>
       <NuxtLink to="/blog">Blog</NuxtLink>
     </li> -->
     <li>
-      <NuxtLink :to="localePath('/logic-task')">{{
-        $t("links.logic_task")
-      }}</NuxtLink>
+      <NuxtLink
+        :to="localePath('/logic-task')"
+        aria-label="go-to-logic_task-page"
+        >{{ $t("links.logic_task") }}</NuxtLink
+      >
     </li>
   </ul>
 </template>

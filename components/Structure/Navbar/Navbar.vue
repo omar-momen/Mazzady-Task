@@ -9,6 +9,7 @@
           class="p-0 lg:hidden block"
           variant="ghost"
           @click="isOpen = true"
+          aria-label="close"
         >
           <MenuSVG class="strok-secondary" />
         </UButton>
@@ -39,6 +40,7 @@
             height="40px"
             class="h-[30px] md:h-[40px] w-[30px] md:w-[40px]"
             src="/temp/user.png"
+            alt="User Image"
           />
         </li>
 
@@ -48,6 +50,7 @@
             class="h-10 px-4"
             color="default"
             :label="$t('navbar.add_new_product')"
+            :aria-label="$t('navbar.add_new_product')"
           >
             <template #leading>
               <Icon size="18" name="ic:round-add-circle-outline" />
@@ -70,6 +73,7 @@
           square
           padded
           @click="isOpen = false"
+          aria-label="close"
         />
         <NavLinks
           class="pt-16 flex justify-center items-center flex-col gap-10"
