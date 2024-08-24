@@ -9,6 +9,7 @@
         :state="state"
         :validate="validate"
         @submit="onSubmit"
+        @error="onError"
       >
         <!-- Category -->
         <UFormGroup label="Category" name="category">
@@ -122,22 +123,24 @@
             </tr>
 
             <!-- Properties -->
-            <tr class="border-b" v-for="property in data_to_display.properties">
-              <td class="py-3 px-4 text-darkColor">
-                {{
-                  property?.custom_value
-                    ? property?.parent_name
-                    : property?.property_name
-                }}
-              </td>
-              <td class="py-3 px-4 text-darkColor">
-                {{
-                  property?.custom_value
-                    ? property?.custom_value + " (Custom Value)"
-                    : property?.name
-                }}
-              </td>
-            </tr>
+            <template v-for="property in data_to_display.properties">
+              <tr class="border-b" v-if="property?.property_name">
+                <td class="py-3 px-4 text-darkColor">
+                  {{
+                    property?.custom_value
+                      ? property?.parent_name
+                      : property?.property_name
+                  }}
+                </td>
+                <td class="py-3 px-4 text-darkColor">
+                  {{
+                    property?.custom_value
+                      ? property?.custom_value + " (Custom Value)"
+                      : property?.name
+                  }}
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
       </div>
@@ -188,6 +191,11 @@ const validate = (state: any) => {
 
   return errors;
 };
+async function onError(event: { errors: { id: string }[] }) {
+  const element = document.getElementById(event.errors[0].id);
+  element?.focus();
+  element?.scrollIntoView({ behavior: "smooth", block: "center" });
+}
 
 const lookups_store = useLookupsStore();
 
