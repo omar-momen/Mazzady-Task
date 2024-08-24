@@ -31,18 +31,18 @@ export default defineNuxtPlugin((nuxtApp) => {
     // await loader.load();
 
     // Handle Resize
-    appStore.handleResize();
-    window.addEventListener("resize", appStore.handleResize);
+    appStore.optimizedResize();
+    window.addEventListener("resize", appStore.optimizedResize);
 
     // Handle Scroll
     const lastScrollTop = ref(
       window.pageYOffset || document.documentElement.scrollTop
     );
-    appStore.handleScroll(lastScrollTop);
+    appStore.optimizedScroll(lastScrollTop);
     window.addEventListener(
       "scroll",
       () => {
-        appStore.handleScroll(lastScrollTop);
+        appStore.optimizedScroll(lastScrollTop);
       },
       false
     );

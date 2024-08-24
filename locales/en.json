@@ -8,6 +8,36 @@
     "logic_task": "Logic Task"
   },
 
+  "navbar": {
+    "add_new_product": "Add New Product"
+  },
+
+  "user_info": {
+    "following": "Following",
+    "followers": "Followers",
+    "rate": "Rate",
+
+    "follow": "Follow"
+  },
+
+  "qr": {
+    "title": "QR Code",
+    "para": "Download the QR code or share it with yourfriends.",
+    "follow_us": "Follow Us on Mazaady"
+  },
+
+  "products": {
+    "title": "Products"
+  },
+
+  "product": {
+    "starting_price": "Starting Price",
+    "lot_starts_in": "Lot Starts In",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes"
+  },
+
   "pages": {
     "error": {
       "notFound": {

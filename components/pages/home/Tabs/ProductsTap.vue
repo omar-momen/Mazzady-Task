@@ -2,24 +2,25 @@
   <div class="products-section">
     <main class="main">
       <h1 class="text-3xl font-extrabold flex items-center gap-2 mb-3">
-        Products
+        {{ $t("products.title") }}
         <span class="text-gray-400 text-xs font-normal"
           >( {{ products?.length }} )</span
         >
       </h1>
-      <div class="overflow-y-scroll h-full max-h-[720px] custom-scrollbar">
-        <ProductCard
-          v-for="product in products"
-          :key="product.id"
-          :product="product"
-          @saveInFave="SaveInFave"
-        />
+      <div class="overflow-y-scroll h-full max-h-[720px] hide-scrollbar">
+        <template v-for="product in products" :key="product.id">
+          <NuxtLink :to="localePath(`/products/${product.id}`)">
+            <ProductCard :product="product" @saveInFave="SaveInFave" />
+          </NuxtLink>
+        </template>
       </div>
     </main>
   </div>
 </template>
 
 <script lang="ts" setup>
+const localePath = useLocalePath();
+
 const products = ref([]);
 products.value = await new Promise((resolve) =>
   setTimeout(() => {

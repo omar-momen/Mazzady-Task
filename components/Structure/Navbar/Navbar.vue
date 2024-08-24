@@ -6,7 +6,7 @@
       <div class="flex items-center gap-2">
         <!-- Menu -->
         <UButton
-          class="p-0 sm:hidden block"
+          class="p-0 lg:hidden block"
           variant="ghost"
           @click="isOpen = true"
         >
@@ -14,10 +14,10 @@
         </UButton>
 
         <!-- Logo -->
-        <Logo class="me-8" />
+        <Logo class="me-5" />
 
         <!-- Links -->
-        <NavLinks class="hidden md:flex items-center gap-10" />
+        <NavLinks class="hidden lg:flex items-center gap-10" />
       </div>
 
       <!-- Actions -->
@@ -42,15 +42,19 @@
           />
         </li>
 
-        <!-- md: -->
-        <li class="hidden md:block me-4">
-          <UButton class="h-10 px-4" color="default" label="Add new product">
+        <!-- lg: -->
+        <li class="hidden lg:block me-4">
+          <UButton
+            class="h-10 px-4"
+            color="default"
+            :label="$t('navbar.add_new_product')"
+          >
             <template #leading>
               <Icon size="18" name="ic:round-add-circle-outline" />
             </template>
           </UButton>
         </li>
-        <LangSwitcher class="hidden md:flex" />
+        <LangSwitcher class="hidden lg:flex" />
       </ul>
     </UContainer>
 

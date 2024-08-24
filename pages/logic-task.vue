@@ -36,8 +36,11 @@
         </UFormGroup>
 
         <!-- Dynamiclly Created Serachable Select Menues Of Properties -->
-        <h2 class="text-primary" v-if="sub_category_properties?.length > 0">
-          ================= Properties =================
+        <h2
+          class="text-primary text-3xl font-bold"
+          v-if="sub_category_properties?.length > 0"
+        >
+          Properties
         </h2>
         <template
           v-for="(property, index) in sub_category_properties"
@@ -53,7 +56,7 @@
                 })),
                 {
                   id: 'other',
-                  name: 'other',
+                  name: locale == 'en' ? 'other' : 'آخر',
                   custom_value: null,
                   parent_name: property.name,
                 },
@@ -83,11 +86,11 @@
 
       <!-- Display Submitted Data -->
       <div class="overflow-x-auto mt-16" v-if="data_to_display">
-        <h2 class="mb-2">Submitted Data</h2>
+        <h2 class="text-3xl font-bold mb-2">Submitted Data</h2>
         <table
-          class="min-w-full bg-gray-700 shadow-md rounded-lg overflow-hidden"
+          class="min-w-full main-card shadow-md rounded-lg overflow-hidden"
         >
-          <thead class="bg-gray-700 border-b border-gray-400">
+          <thead class="border-b border-primary-700">
             <tr>
               <th class="text-center py-3 px-4 font-bold text-primary text-lg">
                 Category
@@ -99,10 +102,10 @@
           </thead>
           <tbody class="rounded-lg">
             <tr class="border-b">
-              <td class="py-3 px-4 text-gray-50 text-center">
+              <td class="py-3 px-4 text-darkColor text-center">
                 {{ data_to_display?.category?.name }}
               </td>
-              <td class="py-3 px-4 text-gray-50 text-center">
+              <td class="py-3 px-4 text-darkColor text-center">
                 {{ data_to_display?.sub_category?.name }}
               </td>
             </tr>
@@ -118,14 +121,14 @@
 
             <!-- Properties -->
             <tr class="border-b" v-for="property in data_to_display.properties">
-              <td class="py-3 px-4 text-gray-50">
+              <td class="py-3 px-4 text-darkColor">
                 {{
                   property?.custom_value
                     ? property?.parent_name
                     : property?.property_name
                 }}
               </td>
-              <td class="py-3 px-4 text-gray-50">
+              <td class="py-3 px-4 text-darkColor">
                 {{
                   property?.custom_value
                     ? property?.custom_value + " (Custom Value)"
@@ -145,6 +148,8 @@ definePageMeta({
   title: "logic-task",
 });
 
+const { locale } = useI18n();
+
 // ====== State
 const state = reactive({
   category: null,
@@ -155,7 +160,7 @@ const state = reactive({
 });
 
 // ======= Schema
-import { object, string } from "yup";
+import { object } from "yup";
 const schema = object({
   category: object().required(),
   sub_category: object().required(),

@@ -24,6 +24,7 @@ export const useAppStore = defineStore("app", () => {
     }
     lastScrollTop.value = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
   };
+  const optimizedScroll = useHelpers().throttle(handleScroll, 200);
 
   // Resize
   const current_x_size = ref(null);
@@ -38,6 +39,7 @@ export const useAppStore = defineStore("app", () => {
   const handleResize = () => {
     current_x_size.value = window.innerWidth;
   };
+  const optimizedResize = useHelpers().debounce(handleResize, 200);
 
   // HandleFirtsLoad
   const handleFirstLoad = async () => {
@@ -55,12 +57,12 @@ export const useAppStore = defineStore("app", () => {
     getSettings,
     settings,
 
-    handleScroll,
+    optimizedScroll,
     scroll_direction,
 
     screen,
     current_x_size,
-    handleResize,
+    optimizedResize,
 
     handleFirstLoad,
   };

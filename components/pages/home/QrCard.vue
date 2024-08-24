@@ -1,7 +1,7 @@
 <template>
   <div class="qr-card">
     <header class="flex justify-between">
-      <h2 class="font-bold text-2xl">QR Code</h2>
+      <h2 class="font-bold text-2xl">{{ $t('qr.title') }}</h2>
       <div class="flex items-center gap-6">
         <EyeSvg />
         <ShareSVG />
@@ -13,9 +13,8 @@
       class="my-4 flex items-center gap-2 bg-[#FFF5E9] p-3 rounded-3xl text-xs font-normal"
     >
       <DocumentDownloadSVG class="stroke-secondary shrink-0" />
-      <useScriptFathomAnalytics
-        >Download the QR code or share it with your
-        friends.</useScriptFathomAnalytics
+      <p
+        >{{ $t('qr.para') }}</p
       >
     </p>
 
@@ -25,15 +24,15 @@
       <div
         class="bg-whiteColor flex items-center justify-center flex-col w-full h-full rounded-3xl py-5"
       >
-        <Logo />
-        <h2 class="text-lg font-bold mt-4">{{ user?.name }}</h2>
+        <Logo class="h-[60px]" />
+        <h2 class="text-2xl font-bold mt-4">{{ user?.name }}</h2>
         <NuxtImg
           src="/images/Qr.png"
           width="117px"
           height="117px"
           alt="Qr Code"
         />
-        <p class="font-normal text-sm mt-2">Follow Us on Mazaady</p>
+        <p class="font-normal text-sm mt-2">{{ $t('qr.follow_us') }}</p>
       </div>
     </div>
   </div>
@@ -51,5 +50,3 @@ const user = reactive({
   total_rates: 15,
 });
 </script>
-
-<style lang="postcss" scoped></style>

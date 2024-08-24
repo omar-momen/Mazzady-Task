@@ -5,7 +5,37 @@
 
   "links": {
     "home": "الرئيسية",
-    "logic_task": "تاسك المنطق"
+    "logic_task": "مهمة منطقية"
+  },
+
+  "navbar": {
+    "add_new_product": "إضافة منتج جديد"
+  },
+
+  "user_info": {
+    "following": "يتابع",
+    "followers": "متابعون",
+    "rate": "تقييم",
+
+    "follow": "تابع"
+  },
+
+  "qr": {
+    "title": "رمز الاستجابة السريعة",
+    "para": "قم بتنزيل رمز الاستجابة السريعة أو مشاركته مع أصدقائك.",
+    "follow_us": "تابعنا على مزادي"
+  },
+
+  "products": {
+    "title": "المنتجات"
+  },
+
+  "product": {
+    "starting_price": "السعر المبدئي",
+    "lot_starts_in": "يبدأ المزاد في",
+    "days": "أيام",
+    "hours": "ساعات",
+    "minutes": "دقائق"
   },
 
   "pages": {

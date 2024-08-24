@@ -13,10 +13,10 @@
 
       <div class="main-card grow">
         <Suspense>
-          <template #fallback> products loading... </template>
+          <template #fallback> <ProductsSkelton /> </template>
           <div>
             <header class="header flex justify-between items-center mb-6">
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 flex-wrap">
                 <UButton
                   @click="changeTab('ProductsTap')"
                   :class="{ active: current_tab === 'ProductsTap' }"
@@ -37,7 +37,7 @@
                 ></UButton>
               </div>
               <UButton
-                class="h-10 px-4 fixed end-0 top-1/2 -translate-y-1/2 md:static md:translate-y-0"
+                class="h-10 px-4 fixed end-0 top-1/2 -translate-y-1/2 lg:static md:translate-y-0 lg:z-0 z-[9999]"
                 color="default"
                 label="Add Review"
               >
@@ -82,7 +82,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .tabBtn {
-  @apply h-9 w-28 justify-center border-2 rounded-xl border-gray-300 bg-transparent text-gray-500 text-sm font-normal hover:bg-secondary hover:text-whiteColor hover:border-secondary transition-all;
+  @apply h-9 w-[90px] md:w-28 justify-center border-2 rounded-xl border-gray-300 bg-transparent text-gray-500 text-sm font-normal hover:bg-secondary hover:text-whiteColor hover:border-secondary transition-all;
 }
 
 .active {
