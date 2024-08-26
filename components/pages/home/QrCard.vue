@@ -1,7 +1,7 @@
 <template>
   <div class="qr-card">
     <header class="flex justify-between">
-      <h2 class="font-bold text-2xl">{{ $t('qr.title') }}</h2>
+      <h2 class="font-bold text-2xl">{{ $t("qr.title") }}</h2>
       <div class="flex items-center gap-6">
         <EyeSvg />
         <ShareSVG />
@@ -9,14 +9,12 @@
       </div>
     </header>
 
-    <p
+    <div
       class="my-4 flex items-center gap-2 bg-[#FFF5E9] p-3 rounded-3xl text-xs font-normal"
     >
       <DocumentDownloadSVG class="stroke-secondary shrink-0" />
-      <p
-        >{{ $t('qr.para') }}</p
-      >
-    </p>
+      <p>{{ $t("qr.para") }}</p>
+    </div>
 
     <div
       class="rounded-3xl bg-gradient-to-r from-primary-700 to-secondary-500 p-4 flex items-center justify-center"
@@ -32,7 +30,7 @@
           height="117px"
           alt="Qr Code"
         />
-        <p class="font-normal text-sm mt-2">{{ $t('qr.follow_us') }}</p>
+        <p class="font-normal text-sm mt-2">{{ $t("qr.follow_us") }}</p>
       </div>
     </div>
   </div>

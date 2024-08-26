@@ -9,7 +9,10 @@
       </h1>
       <div class="overflow-y-scroll h-full max-h-[720px] hide-scrollbar">
         <template v-for="product in products" :key="product.id">
-          <NuxtLink :to="localePath(`/products/${product.id}`)"  aria-label="go-to-product-page">
+          <NuxtLink
+            :to="localePath(`/products/${product.id}`)"
+            aria-label="go-to-product-page"
+          >
             <ProductCard :product="product" @saveInFave="SaveInFave" />
           </NuxtLink>
         </template>

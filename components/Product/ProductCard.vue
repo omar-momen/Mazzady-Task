@@ -19,13 +19,15 @@
     </div>
 
     <div>
-      <h2 class="text-sm md:text-lg font-normal">
-        {{
-          useAppStore().current_x_size >= 768
-            ? product.title.slice(0, 50) + " ..."
-            : product.title.slice(0, 30) + " ..."
-        }}
-      </h2>
+      <ClientOnly>
+        <h2 class="text-sm md:text-lg font-normal">
+          {{
+            useAppStore().current_x_size >= 768
+              ? product.title.slice(0, 50) + " ..."
+              : product.title.slice(0, 30) + " ..."
+          }}
+        </h2>
+      </ClientOnly>
 
       <p class="my-2 flex gap-2">
         <span class="text-gray-500 text-sm md:text-lg font-normal">{{
@@ -43,18 +45,22 @@
         <div
           class="flex md:gap-4 gap-2 *:bg-[#FFF5E9] *:flex *:items-center *:md:gap-2 *:gap-1 *:md:px-6 *:px-2 *:py-1.5 *:rounded-full text-secondary font-bold text-[8px] md:text-sm"
         >
-          <div>
-            <span class="text-[10px] md:text-lg">{{ start_date.days }}</span>
-            {{ $t("product.days") }}
-          </div>
-          <div>
-            <span class="text-[10px]md:text-lg">{{ start_date.hours }}</span>
-            {{ $t("product.hours") }}
-          </div>
-          <div>
-            <span class="text-[10px]md:text-lg">{{ start_date.minutes }}</span>
-            {{ $t("product.minutes") }}
-          </div>
+          <ClientOnly>
+            <div>
+              <span class="text-[10px] md:text-lg">{{ start_date.days }}</span>
+              {{ $t("product.days") }}
+            </div>
+            <div>
+              <span class="text-[10px] md:text-lg">{{ start_date.hours }}</span>
+              {{ $t("product.hours") }}
+            </div>
+            <div>
+              <span class="text-[10px] md:text-lg">{{
+                start_date.minutes
+              }}</span>
+              {{ $t("product.minutes") }}
+            </div>
+          </ClientOnly>
         </div>
       </div>
     </div>

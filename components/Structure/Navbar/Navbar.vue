@@ -4,7 +4,6 @@
   >
     <UContainer class="flex justify-between items-center py-4">
       <div class="flex items-center gap-2">
-        <!-- Menu -->
         <UButton
           class="p-0 lg:hidden block"
           variant="ghost"
@@ -14,10 +13,8 @@
           <MenuSVG class="strok-secondary" />
         </UButton>
 
-        <!-- Logo -->
         <Logo class="me-5" />
 
-        <!-- Links -->
         <NavLinks class="hidden lg:flex items-center gap-10" />
       </div>
 
@@ -30,11 +27,6 @@
           <NotificationSVG class="stroke-darkColor" />
         </li>
         <li>
-          <!-- <NuxtImg
-            sizes="24px md:40px"
-            :height="useAppStore().current_x_size >= 768 ? '40px' : '24px'"
-            src="/temp/user.png"
-          /> -->
           <NuxtImg
             sizes="40px"
             height="40px"
@@ -44,7 +36,7 @@
           />
         </li>
 
-        <!-- lg: -->
+        <!-- Show In Large Screen Only -->
         <li class="hidden lg:block me-4">
           <UButton
             class="h-10 px-4"

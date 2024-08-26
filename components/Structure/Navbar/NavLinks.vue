@@ -5,9 +5,6 @@
         $t("links.home")
       }}</NuxtLink>
     </li>
-    <!-- <li>
-      <NuxtLink to="/blog">Blog</NuxtLink>
-    </li> -->
     <li>
       <NuxtLink
         :to="localePath('/logic-task')"

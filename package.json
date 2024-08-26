@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-     "test": "vitest"
+    "test": "vitest"
   },
   "overrides": {
     "vue": "latest"
@@ -30,7 +30,6 @@
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",
-    "aos": "^2.3.4",
     "encrypt-storage": "^2.13.2",
     "pinia": "^2.1.7",
     "vue-sweetalert2": "^5.0.11",

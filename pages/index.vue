@@ -1,7 +1,7 @@
 <template>
   <div class="index-page">
     <UContainer class="flex flex-col md:flex-row gap-6">
-      <div class="flex flex-col gap-6">
+      <section class="flex flex-col gap-6">
         <div class="main-card">
           <Suspense>
             <template #fallback> <UserInfoSkelton /> </template>
@@ -9,9 +9,9 @@
           </Suspense>
         </div>
         <QrCard class="main-card" />
-      </div>
+      </section>
 
-      <div class="main-card grow">
+      <section class="main-card grow">
         <Suspense>
           <template #fallback> <ProductsSkelton /> </template>
           <div>
@@ -53,7 +53,7 @@
             <component :is="current_tab"></component>
           </div>
         </Suspense>
-      </div>
+      </section>
     </UContainer>
   </div>
 </template>

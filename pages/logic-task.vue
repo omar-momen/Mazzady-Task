@@ -22,6 +22,7 @@
             searchable-placeholder="Search a category..."
           />
         </UFormGroup>
+        
         <!-- Sub Category -->
         <UFormGroup label="Sub Category" name="sub_category">
           <USelectMenu

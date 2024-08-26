@@ -60,11 +60,6 @@ const serverError = async (locale, response) => {
   }
 };
 
-const notFound = async (locale, response) => {
-  if (response.status == 404) {
-  }
-};
-
 export const useMyFetch = (url, options) => {
   const token_cookie = useCookie("token_cookie");
   const nuxtApp = useNuxtApp();
@@ -86,7 +81,6 @@ export const useMyFetch = (url, options) => {
       handleUnAuthunticated(auth_store, locale.value, nuxtApp, response);
       handleUnAuthorized(locale.value, response);
       serverError(locale.value, response);
-      notFound(locale.value, response);
     },
     ...options,
   };

@@ -8,16 +8,15 @@
       width="110px"
       height="40px"
       src="/images/logo/logo-light.svg"
-      v-bind="$attrs"
       alt="site Logo"
+      v-bind="$attrs"
     />
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-
-definePageMeta({
+defineOptions({
   inheritAttrs: false,
 });
 </script>

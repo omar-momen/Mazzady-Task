@@ -1,9 +1,6 @@
 import { useAuthStore } from "@/stores/auth";
 import { useAppStore } from "@/stores/app";
 
-// ========= Google Maps
-// import { Loader } from "@googlemaps/js-api-loader";
-
 export default defineNuxtPlugin((nuxtApp) => {
   // App
   const appStore = useAppStore();
@@ -20,16 +17,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     token: "3%o8i}_;3D4bF]G5@22r2)Et1&mLJ4?$@+16",
   });
 
-  // Google Map Loader
-  // const loader = new Loader({
-  //   apiKey: useRuntimeConfig().public.googleMapsApiKey,
-  //   libraries: ["places"],
-  // });
-
   nuxtApp.hook("app:mounted", async () => {
-    // Map Init
-    // await loader.load();
-
     // Handle Resize
     appStore.optimizedResize();
     window.addEventListener("resize", appStore.optimizedResize);
