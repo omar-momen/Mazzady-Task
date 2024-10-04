@@ -5,9 +5,9 @@
     <UContainer class="flex justify-between items-center py-4">
       <div class="flex items-center gap-2">
         <UButton
+          @click="isOpen = true"
           class="p-0 lg:hidden block"
           variant="ghost"
-          @click="isOpen = true"
           aria-label="close"
         >
           <MenuSVG class="strok-secondary" />
@@ -30,25 +30,25 @@
           <NuxtImg
             sizes="40px"
             height="40px"
-            class="h-[30px] md:h-[40px] w-[30px] md:w-[40px]"
-            src="/temp/user.png"
+            class="h-[30px] md:h-[40px] w-[30px] md:w-[40px] rounded-full"
+            src="https://placehold.co/40x40"
             alt="User Image"
           />
         </li>
 
         <!-- Show In Large Screen Only -->
-        <li class="hidden lg:block me-4">
-          <UButton
-            class="h-10 px-4"
-            color="default"
-            :label="$t('navbar.add_new_product')"
-            :aria-label="$t('navbar.add_new_product')"
-          >
-            <template #leading>
-              <Icon size="18" name="ic:round-add-circle-outline" />
-            </template>
-          </UButton>
-        </li>
+        <ClientOnly>
+          <li class="hidden lg:block me-4" v-if="useAuthStore().user">
+            <UButton
+              @click="useAuthStore().logOut(true)"
+              class="h-10 px-4"
+              color="default"
+              label="Fake Logout"
+              aria-label="Fake Logout"
+            >
+            </UButton>
+          </li>
+        </ClientOnly>
         <LangSwitcher class="hidden lg:flex" />
       </ul>
     </UContainer>

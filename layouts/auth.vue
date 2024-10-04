@@ -1,6 +1,5 @@
 <template>
-  <div class="default-layout pt-[var(--navbar-height)]">
-    <Navbar />
+  <div class="auth-layout">
     <div class="inside-view">
       <slot />
     </div>

@@ -2,11 +2,12 @@
   <div class="product relative items-start flex gap-4 mb-6" v-if="product">
     <div class="relative">
       <NuxtImg
-        class="relative z-2 w-[110px] h-[85px] md:w-[145px] md:h-[127px]"
+        class="relative z-2 w-[110px] h-[85px] md:w-[145px] md:h-[127px] rounded-ss-3xl rounded-ee-3xl"
         width="145px"
         height="127px"
         :src="product.image"
         :alt="`product ${product.title}'s image'`"
+        placeholder="https://placehold.co/145x127"
       />
       <span
         class="absolute bottom-0 end-0 z-3 text-xs font-normal text-whiteColor md:w-28 md:h-9 w-20 h-6 rounded-ss-full rounded-ee-full flex items-center justify-center"
@@ -22,7 +23,7 @@
       <ClientOnly>
         <h2 class="text-sm md:text-lg font-normal">
           {{
-            useAppStore().current_x_size >= 768
+            (useAppStore()?.current_x_size ?? 0) >= 768
               ? product.title.slice(0, 50) + " ..."
               : product.title.slice(0, 30) + " ..."
           }}
@@ -66,7 +67,7 @@
     </div>
 
     <button
-      @click="SaveInFave"
+      @click.prevent="SaveInFave"
       class="absolute xl:start-[unset] xl:top-0 xl:end-10 start-2 top-1 bg-whiteColor rounded-full p-1"
     >
       <HeartSVG
@@ -104,9 +105,9 @@ const calculateDate = () => {
   const [day, month, year]: [number, number, number] =
     props.product.lot_start_date.split("-").map(Number);
 
-  const targetDate: Date = new Date(year, month - 1, day);
+  const targetDate: any = new Date(year, month - 1, day);
 
-  const currentDate: Date = new Date();
+  const currentDate: any = new Date();
 
   const differenceInMs: number = targetDate - currentDate;
 

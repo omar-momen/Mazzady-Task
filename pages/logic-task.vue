@@ -22,7 +22,7 @@
             searchable-placeholder="Search a category..."
           />
         </UFormGroup>
-        
+
         <!-- Sub Category -->
         <UFormGroup label="Sub Category" name="sub_category">
           <USelectMenu
@@ -172,7 +172,7 @@ const schema = object({
   sub_category: object().required(),
 });
 const validate = (state: any) => {
-  const errors = [];
+  const errors: { path: any; message: string }[] = [];
 
   state.properties.forEach((property) => {
     if (!property.id && property.hasOptions) {

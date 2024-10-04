@@ -6,11 +6,14 @@
       }}</NuxtLink>
     </li>
     <li>
-      <NuxtLink
-        :to="localePath('/logic-task')"
-        aria-label="go-to-logic_task-page"
-        >{{ $t("links.logic_task") }}</NuxtLink
-      >
+      <NuxtLink :to="localePath('/logic-task')" aria-label="go-to-about-page">
+        logic-task
+      </NuxtLink>
+    </li>
+    <li>
+      <NuxtLink :to="localePath('/about')" aria-label="go-to-about-page">{{
+        $t("links.about")
+      }}</NuxtLink>
     </li>
   </ul>
 </template>

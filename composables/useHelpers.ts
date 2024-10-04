@@ -1,17 +1,17 @@
 export const useHelpers = () => {
   return {
-    debounce: (func, wait = 100) => {
-      let timeout;
-      return function (...args) {
+    debounce: (func: any, wait = 100) => {
+      let timeout: string | number | NodeJS.Timeout | undefined;
+      return function (...args: any) {
         clearTimeout(timeout);
         timeout = setTimeout(() => func.apply(this, args), wait);
       };
     },
 
-    throttle: (func, limit = 100) => {
-      let lastFunc;
-      let lastRan;
-      return function (...args) {
+    throttle: (func: any, limit = 100) => {
+      let lastFunc: string | number | NodeJS.Timeout | undefined;
+      let lastRan: number;
+      return function (...args: any) {
         if (!lastRan) {
           func.apply(this, args);
           lastRan = Date.now();

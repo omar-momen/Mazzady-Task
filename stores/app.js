@@ -3,14 +3,6 @@ export const useAppStore = defineStore("app", () => {
   const appInitLoading = ref(true);
   const pageLoading = ref(false);
 
-  // App Settings
-  const settings = ref(null);
-  const getSettings = async () => {
-    const data = await settingsService().getSettings();
-    settings.value = data;
-    return data;
-  };
-
   // Scroll
   const scroll_direction = ref(null);
   const handleScroll = (lastScrollTop) => {
@@ -53,9 +45,6 @@ export const useAppStore = defineStore("app", () => {
   return {
     appInitLoading,
     pageLoading,
-
-    getSettings,
-    settings,
 
     optimizedScroll,
     scroll_direction,
