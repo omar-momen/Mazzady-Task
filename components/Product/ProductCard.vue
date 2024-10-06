@@ -123,9 +123,3 @@ const calculateDate = () => {
 
 calculateDate();
 </script>
-
-<style lang="postcss" scoped>
-.active {
-  @apply stroke-Tprimary-700 fill-Tprimary-700;
-}
-</style>

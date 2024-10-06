@@ -5,5 +5,3 @@
     <div class="spin-loader w-12 h-12 rounded-full animate-spin"></div>
   </div>
 </template>
-
-<style lang="postcss" scoped></style>
