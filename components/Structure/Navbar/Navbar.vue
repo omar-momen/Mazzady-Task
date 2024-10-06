@@ -20,10 +20,10 @@
 
       <!-- Actions -->
       <ul class="flex items-center gap-4">
-        <li class="md:pe-6 md:border-e md:border-secondary-200">
+        <li class="md:pe-6 md:border-e md:border-secondary-200 cursor-pointer">
           <SearchSVG class="stroke-darkColor" />
         </li>
-        <li class="md:pe-6 md:border-e md:border-secondary-200">
+        <li class="md:pe-6 md:border-e md:border-secondary-200 cursor-pointer">
           <NotificationSVG class="stroke-darkColor" />
         </li>
         <li>

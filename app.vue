@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <AppLoader v-if="appStore?.appInitLoading" />
+    <!-- <AppLoader v-if="appStore?.appInitLoading" /> -->
     <div class="layout-wrapper">
       <NuxtLayout>
         <PageLoader v-if="appStore?.pageLoading" />

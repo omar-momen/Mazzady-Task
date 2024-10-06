@@ -5,7 +5,7 @@
         <div class="main-card">
           <UserInfo />
         </div>
-        <!-- <QrCard class="main-card" /> -->
+        <QrCard class="main-card" />
       </section>
 
       <section class="main-card grow">
