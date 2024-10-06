@@ -87,37 +87,5 @@ useHead({
       content: "https://mazzady-task.vercel.app/",
     },
   ],
-  link: [
-    // Preconnect to Google Fonts
-    {
-      rel: "preconnect",
-      href: "https://fonts.googleapis.com",
-    },
-    {
-      rel: "preconnect",
-      href: "https://fonts.gstatic.com",
-      crossorigin: "anonymous",
-    },
-    // Preload the font stylesheets
-    {
-      rel: "preload",
-      href: "https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap",
-      as: "style",
-    },
-    {
-      rel: "preload",
-      href: "https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap",
-      as: "style",
-    },
-    // Actual font stylesheets
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap",
-    },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap",
-    },
-  ],
 });
 </script>

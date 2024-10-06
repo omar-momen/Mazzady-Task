@@ -1,8 +1,8 @@
 <template>
   <div class="user-info">
     <ClientOnly>
-      <UserInfoSkelton v-if="status == 'pending'" />
-      <div v-else>
+      <!-- <UserInfoSkelton v-if="status == 'pending'" /> -->
+      <div>
         <NuxtImg
           src="/images/temp/avatar-lg.png"
           placeholder="https://placehold.co/100x100"
@@ -63,13 +63,13 @@
 
 <script lang="ts" setup>
 // Simulate fetching user data for skeleton to show
-const { status } = await useApi(
-  "https://jsonplaceholder.typicode.com/photos?_limit=2000",
-  {
-    lazy: true,
-    server: false,
-  }
-);
+// const { status } = await useApi(
+//   "https://jsonplaceholder.typicode.com/photos?_limit=2000",
+//   {
+//     lazy: true,
+//     server: false,
+//   }
+// );
 
 interface User {
   image: string;

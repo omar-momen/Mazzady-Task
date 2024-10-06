@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
     "@pinia/nuxt",
+    "@nuxt/fonts",
     "@nuxt/test-utils/module",
   ],
 
