@@ -22,7 +22,7 @@
       <div
         class="bg-whiteColor flex items-center justify-center flex-col w-full h-full rounded-3xl py-5"
       >
-        <Logo class="h-[60px]" />
+        <Logo format="png" />
         <h2 class="text-2xl font-bold mt-4">{{ user?.name }}</h2>
         <NuxtImg
           src="/images/Qr.png"
