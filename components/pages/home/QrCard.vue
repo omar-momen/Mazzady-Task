@@ -24,15 +24,16 @@
       >
         <Logo format="png" />
         <h2 class="text-2xl font-bold mt-4">{{ user?.name }}</h2>
-        <div class="w-[117px] h-[117px]">
+        <!-- <div class="w-[117px] h-[117px]">
           <NuxtImg
             src="/images/Qr.png"
             width="117px"
             height="117px"
             alt="Qr Code"
             format="webp"
+            quality="70"
           />
-        </div>
+        </div> -->
         <p class="font-normal text-sm mt-2">{{ $t("qr.follow_us") }}</p>
       </div>
     </div>
