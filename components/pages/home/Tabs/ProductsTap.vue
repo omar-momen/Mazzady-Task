@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 // Simulate API call For Skelton to Show
 const { data: photos, status } = await useApi(
-  "https://jsonplaceholder.typicode.com/photos?_limit=5000",
+  "https://jsonplaceholder.typicode.com/photos?_limit=2000",
   {
     lazy: true,
     server: false,
