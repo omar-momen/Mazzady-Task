@@ -1,26 +1,26 @@
 <template>
   <div class="products-section">
-    <ClientOnly>
-      <!-- <ProductsSkelton v-if="status == 'pending'" class="mb-5" /> -->
-      <main class="main">
-        <h1 class="text-3xl font-extrabold flex items-center gap-2 mb-3">
-          {{ $t("products.title") }}
-          <span class="text-gray-400 text-xs font-normal"
-            >( {{ products?.length }} )</span
+    <!-- <ClientOnly> -->
+    <!-- <ProductsSkelton v-if="status == 'pending'" class="mb-5" /> -->
+    <main class="main">
+      <h1 class="text-3xl font-extrabold flex items-center gap-2 mb-3">
+        {{ $t("products.title") }}
+        <span class="text-gray-400 text-xs font-normal"
+          >( {{ products?.length }} )</span
+        >
+      </h1>
+      <div class="overflow-y-scroll h-full max-h-[720px] hide-scrollbar">
+        <template v-for="product in products" :key="product.id">
+          <NuxtLink
+            :to="localePath(`/products/${product.id}`)"
+            aria-label="go-to-product-page"
           >
-        </h1>
-        <div class="overflow-y-scroll h-full max-h-[720px] hide-scrollbar">
-          <template v-for="product in products" :key="product.id">
-            <NuxtLink
-              :to="localePath(`/products/${product.id}`)"
-              aria-label="go-to-product-page"
-            >
-              <ProductCard :product="product" @saveInFave="SaveInFave" />
-            </NuxtLink>
-          </template>
-        </div>
-      </main>
-    </ClientOnly>
+            <ProductCard :product="product" @saveInFave="SaveInFave" />
+          </NuxtLink>
+        </template>
+      </div>
+    </main>
+    <!-- </ClientOnly> -->
   </div>
 </template>
 
