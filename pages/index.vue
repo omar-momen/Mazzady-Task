@@ -34,7 +34,7 @@
             ></UButton>
           </div>
           <UButton
-            class="h-10 px-4 fixed end-0 top-1/2 -translate-y-1/2 lg:static md:translate-y-0 lg:z-0 z-[9999]"
+            class="h-10 px-4 fixed end-0 top-1/2 -translate-y-1/2 lg:static md:translate-y-0 lg:z-0 z-[998]"
             color="default"
             label="Add Review"
             aria-label="Add Review"

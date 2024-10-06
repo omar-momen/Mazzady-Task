@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-screen h-screen fixed z-[997] bg-primary-200 flex justify-center items-center"
+    class="w-screen h-screen fixed z-[999] bg-primary-200 flex justify-center items-center"
   >
     <div class="loader"></div>
   </div>

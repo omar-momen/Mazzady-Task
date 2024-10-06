@@ -5,6 +5,7 @@
         class="relative z-2 w-[110px] h-[85px] md:w-[145px] md:h-[127px] rounded-ss-3xl rounded-ee-3xl"
         width="145px"
         height="127px"
+        format="webp"
         :src="product.image"
         :alt="`product ${product.title}'s image'`"
         placeholder="https://placehold.co/145x127"

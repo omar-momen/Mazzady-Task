@@ -1,14 +1,9 @@
-import { useAuthStore } from "@/stores/auth";
 import { useAppStore } from "@/stores/app";
 
 export default defineNuxtPlugin((nuxtApp) => {
   // App
   const appStore = useAppStore();
   appStore.handleFirstLoad();
-
-  // Auth
-  const authStore = useAuthStore();
-  authStore.handleFirstLoad();
 
   nuxtApp.hook("app:mounted", async () => {
     // Handle Resize

@@ -29,6 +29,7 @@
           width="117px"
           height="117px"
           alt="Qr Code"
+          format="webp"
         />
         <p class="font-normal text-sm mt-2">{{ $t("qr.follow_us") }}</p>
       </div>

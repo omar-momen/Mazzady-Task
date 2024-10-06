@@ -31,21 +31,25 @@
             sizes="40px"
             height="40px"
             class="h-[30px] md:h-[40px] w-[30px] md:w-[40px] rounded-full"
-            src="https://placehold.co/40x40"
+            placeholder="https://placehold.co/40x40"
+            src="/images/temp/avatar-sm.png"
             alt="User Image"
+            format="webp"
           />
         </li>
 
         <!-- Show In Large Screen Only -->
         <ClientOnly>
-          <li class="hidden lg:block me-4" v-if="useAuthStore().user">
+          <li class="hidden lg:block me-4">
             <UButton
-              @click="useAuthStore().logOut(true)"
               class="h-10 px-4"
               color="default"
-              label="Fake Logout"
-              aria-label="Fake Logout"
+              label="Add New Product"
+              aria-label="Add New Product"
             >
+              <template #leading>
+                <Icon size="18" name="ic:round-add-circle-outline" />
+              </template>
             </UButton>
           </li>
         </ClientOnly>

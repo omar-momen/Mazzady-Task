@@ -6,13 +6,11 @@ export const useLookupsStore = defineStore("lookups", () => {
     if (data) {
       categories.value = data?.categories;
     }
-
     return categories.value;
   };
 
   const subCategoryProperties = ref(null);
   const getSubCategoryProperties = async (subCategoryId) => {
-    if (subCategoryProperties.value) return subCategoryProperties.value;
     const data = await lookupsService().get_sub_cat_properties(subCategoryId);
     if (data) {
       subCategoryProperties.value = data;

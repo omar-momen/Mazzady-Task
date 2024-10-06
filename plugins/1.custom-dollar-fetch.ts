@@ -71,10 +71,11 @@ const serverError = async (locale: any, response: any) => {
 };
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const token = useCookie("token");
+  // const token = useCookie("token");
+  const token = ref("3%o8i}_;3D4bF]G5@22r2)Et1&mLJ4?$@+16");
   const locale = (nuxtApp.$i18n as any)?.locale;
   const appConfig = useRuntimeConfig();
-  const auth_store = useAuthStore();
+  // const auth_store = useAuthStore(); // no-store
 
   const dollarfetch = $fetch.create({
     baseURL: appConfig.public.apiBase,
@@ -103,7 +104,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     },
     async onResponseError({ response, options, error }) {
-      handleUnAuthunticated(auth_store, locale.value, nuxtApp, response);
+      handleUnAuthunticated(auth_store || {}, locale.value, nuxtApp, response);
       handleUnAuthorized(locale.value, response);
       serverError(locale.value, response);
     },

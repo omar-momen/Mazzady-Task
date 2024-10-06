@@ -34,17 +34,18 @@ export const authService = () => {
     },
 
     async logout() {
-      const { data, error } = await useApi("member/auth/logout", {
-        method: "POST",
-      });
-
-      if (error.value) {
+      let data;
+      try {
+        data = await $dollarfetch("member/auth/logout", {
+          method: "POST",
+        });
+      } catch (error) {
         toast.add({
           color: "red",
           id: "logout_failed",
           title: getError(error.value),
         });
-        return null;
+        return 0;
       }
 
       const message =

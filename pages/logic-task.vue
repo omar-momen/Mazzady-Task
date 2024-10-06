@@ -11,7 +11,6 @@
         @submit="onSubmit"
         @error="onError"
       >
-        <!-- Category -->
         <UFormGroup label="Category" name="category">
           <USelectMenu
             v-model="state.category"
@@ -23,7 +22,6 @@
           />
         </UFormGroup>
 
-        <!-- Sub Category -->
         <UFormGroup label="Sub Category" name="sub_category">
           <USelectMenu
             v-model="state.sub_category"
@@ -37,58 +35,61 @@
           />
         </UFormGroup>
 
-        <!-- Dynamiclly Created Serachable Select Menues Of Properties -->
-        <h2
-          class="text-primary text-3xl font-bold"
-          v-if="sub_category_properties?.length > 0"
-        >
-          Properties
-        </h2>
-        <template
-          v-for="(property, index) in sub_category_properties"
-          :key="property.id"
-        >
-          <UFormGroup :label="property.name" :name="property.name">
-            <USelectMenu
-              v-model="state.properties[index]"
-              :options="[
-                ...property.options.map((option) => ({
-                  ...option,
-                  property_name: property.name,
-                })),
-                {
-                  id: 'other',
-                  name: locale == 'en' ? 'other' : 'آخر',
-                  custom_value: null,
-                  parent_name: property.name,
-                },
-              ]"
-              :placeholder="`Select ${property.name}`"
-              option-attribute="name"
-              searchable
-              :searchable-placeholder="`Search a ${property.name}...`"
-            />
-          </UFormGroup>
-          <!-- Show Input Text only if user Choose Other -->
-          <UFormGroup
-            v-if="state.properties[index]?.id === 'other'"
-            :label="`Custom ${property.name}`"
-            :name="`custom ${property.name}`"
+        <!-- Dynamiclly Created Serachable Select Menues Of Properties:: Based On sub_category -->
+        <template v-if="!sub_category_properties_loading">
+          <h2
+            class="text-primary text-3xl font-bold"
+            v-if="sub_category_properties?.length > 0"
           >
-            <UInput
-              placeholder="Enter Custom Value"
-              class="ps-10 mt-3"
-              v-model="state.properties[index].custom_value"
-            />
-          </UFormGroup>
+            Properties
+          </h2>
+          <template
+            v-for="(property, index) in sub_category_properties"
+            :key="property.id"
+          >
+            <UFormGroup :label="property.name" :name="property.name">
+              <USelectMenu
+                v-model="state.properties[index]"
+                :options="[
+                  ...property.options.map((option) => ({
+                    ...option,
+                    property_name: property.name,
+                  })),
+                  {
+                    id: 'other',
+                    name: locale == 'en' ? 'other' : 'آخر',
+                    custom_value: null,
+                    property_name: property.name,
+                  },
+                ]"
+                :placeholder="`Select ${property.name}`"
+                option-attribute="name"
+                searchable
+                :searchable-placeholder="`Search a ${property.name}...`"
+              />
+            </UFormGroup>
+            <!-- Show Input Text only if user Choose Other -->
+            <UFormGroup
+              v-if="state.properties[index]?.id === 'other'"
+              :label="`Custom ${property.name}`"
+              :name="`custom ${property.name}`"
+            >
+              <UInput
+                placeholder="Enter Custom Value"
+                class="ps-10 mt-3"
+                v-model="state.properties[index].custom_value"
+              />
+            </UFormGroup>
+          </template>
         </template>
+        <PropertiesSkelton v-else />
 
         <UButton :loading="submit_loading" type="submit" aria-label="submit">
           Submit
         </UButton>
       </UForm>
 
-      <!-- Display Submitted Data -->
+      <!-- Display Submitted Data Table -->
       <div class="overflow-x-auto mt-16" v-if="data_to_display">
         <h2 class="text-3xl font-bold mb-2">Submitted Data</h2>
         <table
@@ -127,11 +128,7 @@
             <template v-for="property in data_to_display.properties">
               <tr class="border-b" v-if="property?.property_name">
                 <td class="py-3 px-4 text-darkColor">
-                  {{
-                    property?.custom_value
-                      ? property?.parent_name
-                      : property?.property_name
-                  }}
+                  {{ property?.property_name }}
                 </td>
                 <td class="py-3 px-4 text-darkColor">
                   {{
@@ -182,12 +179,12 @@ const validate = (state: any) => {
       });
     }
 
-    if (property.id == "other" && !property.custom_value) {
-      errors.push({
-        path: `custom ${property.name}`,
-        message: `Custom ${property.name} Property Name is required`,
-      });
-    }
+    // if (property.id == "other" && !property.custom_value) {
+    //   errors.push({
+    //     path: `custom ${property.name}`,
+    //     message: `Custom ${property.name} Property Name is required`,
+    //   });
+    // }
   });
 
   return errors;
@@ -223,11 +220,14 @@ watch(
 
 // ====== Fetch sub-categories's Properties
 const sub_category_properties = ref([]);
+const sub_category_properties_loading = ref(false);
 watch(
   () => state.sub_category,
   async (new_sub_category) => {
     if (new_sub_category) {
+      sub_category_properties_loading.value = true;
       data_to_display.value = null;
+
       sub_category_properties.value =
         await lookups_store.getSubCategoryProperties(new_sub_category.id);
 
@@ -238,22 +238,45 @@ watch(
       sub_category_properties.value.forEach((property) => {
         state.properties.push({
           name: property.name,
-          hasOptions: property.options.length > 0,
+          hasOptions: property.options?.length > 0,
         });
       });
+
+      sub_category_properties_loading.value = false;
+    } else {
+      sub_category_properties.value = [];
     }
   }
 );
 
+const toast = useToast();
 // ====== Submit Form
 const submit_loading = ref(false);
 const data_to_display = ref(null);
 async function onSubmit(event) {
   submit_loading.value = true;
 
+  let failed = false;
+
+  // Check if all properties with custom_value are filled
+  event.data?.properties?.forEach((property) => {
+    if (property.id === "other" && !property.custom_value) {
+      failed = true;
+
+      toast.add({
+        color: "red",
+        id: "fill_all_cutom_values",
+        title: "Please Fill All Cutome values",
+      });
+    }
+  });
+  if (failed) {
+    submit_loading.value = false;
+    return;
+  }
+
   setTimeout(() => {
     data_to_display.value = event.data;
-    console.log("Submitted Data: ", event.data);
     submit_loading.value = false;
   }, 300);
 }

@@ -9,6 +9,7 @@
       height="40px"
       src="/images/logo/logo-light.svg"
       alt="site Logo"
+      format="webp"
       v-bind="$attrs"
     />
   </NuxtLink>

@@ -10,11 +10,6 @@
         logic-task
       </NuxtLink>
     </li>
-    <li>
-      <NuxtLink :to="localePath('/about')" aria-label="go-to-about-page">{{
-        $t("links.about")
-      }}</NuxtLink>
-    </li>
   </ul>
 </template>
 
