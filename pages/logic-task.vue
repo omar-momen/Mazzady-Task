@@ -93,9 +93,9 @@
                   class="childs ps-10 my-5"
                   v-if="property.childs && property.childs?.length > 0"
                 >
-                  <h2 class="font-bold text-2xl mb-1">
+                  <h3 class="font-bold text-xl mb-1">
                     {{ property.name }} childs
-                  </h2>
+                  </h3>
                   <div v-for="(child_property, child_index) in property.childs">
                     <div>
                       <UFormGroup
@@ -162,9 +162,9 @@
                       "
                       class="grand-childs ps-10 my-5"
                     >
-                      <h2 class="font-bold text-2xl mb-1">
+                      <h4 class="font-bold text-lg mb-1">
                         {{ child_property.name }} childs
-                      </h2>
+                      </h4>
                       <div
                         v-for="(
                           grand_child_property, grand_child_index
