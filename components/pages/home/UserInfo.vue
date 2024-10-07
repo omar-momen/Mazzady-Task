@@ -1,7 +1,5 @@
 <template>
   <div class="user-info">
-    <!-- <ClientOnly> -->
-    <!-- <UserInfoSkelton v-if="status == 'pending'" /> -->
     <div>
       <NuxtImg
         src="/images/temp/avatar-lg.png"
@@ -57,19 +55,10 @@
         :aria-label="$t('user_info.follow')"
       />
     </div>
-    <!-- </ClientOnly> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-// Simulate fetching user data for skeleton to show
-// const { status } = await useApi(
-//   "https://jsonplaceholder.typicode.com/photos?_limit=2000",
-//   {
-//     lazy: true,
-//     server: false,
-//   }
-// );
 
 interface User {
   image: string;

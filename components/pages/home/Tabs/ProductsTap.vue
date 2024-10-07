@@ -1,7 +1,5 @@
 <template>
   <div class="products-section">
-    <!-- <ClientOnly> -->
-    <!-- <ProductsSkelton v-if="status == 'pending'" class="mb-5" /> -->
     <main class="main">
       <h1 class="text-3xl font-extrabold flex items-center gap-2 mb-3">
         {{ $t("products.title") }}
@@ -20,20 +18,10 @@
         </template>
       </div>
     </main>
-    <!-- </ClientOnly> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-// Simulate API call For Skelton to Show
-// const { data: photos, status } = await useApi(
-//   "https://jsonplaceholder.typicode.com/photos?_limit=2000",
-//   {
-//     lazy: true,
-//     server: false,
-//   }
-// );
-
 const localePath = useLocalePath();
 
 const SaveInFave = (id: number) => {

@@ -70,6 +70,7 @@
     <button
       @click.prevent="SaveInFave"
       class="absolute xl:start-[unset] xl:top-0 xl:end-10 start-2 top-1 bg-whiteColor rounded-full p-1"
+      aria-label="heart"
     >
       <HeartSVG
         v-if="product.inFav"
