@@ -33,5 +33,22 @@ export const lookupsService = () => {
 
       return data?.data;
     },
+
+    async get_option_childs(optionId: string | number) {
+      let data;
+
+      try {
+        data = await $dollarfetch("get-options-child/" + optionId);
+      } catch (error) {
+        toast.add({
+          color: "red",
+          id: "get_options_child_failed",
+          title: getError(error),
+        });
+        return 0;
+      }
+
+      return data?.data;
+    },
   };
 };

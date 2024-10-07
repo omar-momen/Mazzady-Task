@@ -47,39 +47,206 @@
             v-for="(property, index) in sub_category_properties"
             :key="property.id"
           >
-            <UFormGroup :label="property.name" :name="property.name">
-              <USelectMenu
-                v-model="state.properties[index]"
-                :options="[
-                  ...property.options.map((option) => ({
-                    ...option,
-                    property_name: property.name,
-                  })),
-                  {
-                    id: 'other',
-                    name: locale == 'en' ? 'other' : 'آخر',
-                    custom_value: null,
-                    property_name: property.name,
-                  },
-                ]"
-                :placeholder="`Select ${property.name}`"
-                option-attribute="name"
-                searchable
-                :searchable-placeholder="`Search a ${property.name}...`"
-              />
-            </UFormGroup>
-            <!-- Show Input Text only if user Choose Other -->
-            <UFormGroup
-              v-if="state.properties[index]?.id === 'other'"
-              :label="`Custom ${property.name}`"
-              :name="`custom ${property.name}`"
-            >
-              <UInput
-                placeholder="Enter Custom Value"
-                class="ps-10 mt-3"
-                v-model="state.properties[index].custom_value"
-              />
-            </UFormGroup>
+            <div class="border-2 p-5 rounded-lg">
+              <div class="parent">
+                <!-- Parent -->
+                <div>
+                  <UFormGroup :label="property.name" :name="property.name">
+                    <USelectMenu
+                      v-model="state.properties[index]"
+                      @change="optioSelected(index, false, false, $event)"
+                      :options="[
+                        ...property.options.map((option) => ({
+                          ...option,
+                          property_name: property.name,
+                        })),
+                        {
+                          id: 'other',
+                          name: locale == 'en' ? 'other' : 'آخر',
+                          custom_value: null,
+                          property_name: property.name,
+                        },
+                      ]"
+                      :placeholder="`Select ${property.name}`"
+                      option-attribute="name"
+                      searchable
+                      :searchable-placeholder="`Search a ${property.name}...`"
+                    />
+                  </UFormGroup>
+                  <!-- Show Input Text only if user Choose Other -->
+                  <UFormGroup
+                    class="ps-5 pt-5"
+                    v-if="state.properties[index]?.id === 'other'"
+                    :label="`Custom ${property.name}`"
+                    :name="`Custom ${property.name}`"
+                  >
+                    <UInput
+                      placeholder="Enter Custom Value"
+                      class="ps-10 mt-3"
+                      v-model="state.properties[index].custom_value"
+                    />
+                  </UFormGroup>
+                </div>
+
+                <!-- Childs -->
+                <div
+                  class="childs ps-10 my-5"
+                  v-if="property.childs && property.childs?.length > 0"
+                >
+                  <h2 class="font-bold text-2xl mb-1">
+                    {{ property.name }} childs
+                  </h2>
+                  <div v-for="(child_property, child_index) in property.childs">
+                    <div>
+                      <UFormGroup
+                        :label="child_property.name"
+                        :name="child_property.name"
+                        v-if="
+                          state.properties &&
+                          state.properties[index]?.childs &&
+                          state.properties[index]?.childs[child_index]
+                        "
+                      >
+                        <USelectMenu
+                          v-model="state.properties[index].childs[child_index]"
+                          @change="
+                            optioSelected(child_index, index, false, $event)
+                          "
+                          :options="[
+                            ...child_property.options.map((option) => ({
+                              ...option,
+                              property_name: child_property.name,
+                            })),
+                            {
+                              id: 'other',
+                              name: locale == 'en' ? 'other' : 'آخر',
+                              custom_value: null,
+                              property_name: child_property.name,
+                            },
+                          ]"
+                          :placeholder="`Select ${child_property.name}`"
+                          option-attribute="name"
+                          searchable
+                          :searchable-placeholder="`Search a ${child_property.name}...`"
+                        />
+                      </UFormGroup>
+                      <!-- Show Input Text only if user Choose Other -->
+
+                      <UFormGroup
+                        v-if="
+                          state.properties &&
+                          state.properties[index]?.childs &&
+                          state.properties[index]?.childs[child_index]?.id ===
+                            'other'
+                        "
+                        :label="`Custom ${child_property.name}`"
+                        :name="`Custom ${child_property.name}`"
+                        class="ps-5 pt-5"
+                      >
+                        <UInput
+                          placeholder="Enter Custom Value"
+                          class="ps-10 mt-3"
+                          v-model="
+                            state.properties[index].childs[child_index]
+                              .custom_value
+                          "
+                        />
+                      </UFormGroup>
+                    </div>
+
+                    <!-- Grandchilds -->
+                    <div
+                      v-if="
+                        child_property.childs &&
+                        child_property.childs?.length > 0
+                      "
+                      class="grand-childs ps-10 my-5"
+                    >
+                      <h2 class="font-bold text-2xl mb-1">
+                        {{ child_property.name }} childs
+                      </h2>
+                      <div
+                        v-for="(
+                          grand_child_property, grand_child_index
+                        ) in child_property.childs"
+                      >
+                        <div>
+                          <UFormGroup
+                            :label="grand_child_property.name"
+                            :name="grand_child_property.name"
+                            v-if="
+                              state.properties &&
+                              state.properties[index] &&
+                              state.properties[index].childs &&
+                              state.properties[index].childs[child_index] &&
+                              state.properties[index].childs[child_index].childs
+                            "
+                          >
+                            <USelectMenu
+                              v-model="
+                                state.properties[index].childs[child_index]
+                                  .childs[grand_child_index]
+                              "
+                              @change="
+                                optioSelected(
+                                  grand_child_index,
+                                  child_index,
+                                  index,
+                                  $event
+                                )
+                              "
+                              :options="[
+                                ...grand_child_property.options.map(
+                                  (option) => ({
+                                    ...option,
+                                    property_name: grand_child_property.name,
+                                  })
+                                ),
+                                {
+                                  id: 'other',
+                                  name: locale == 'en' ? 'other' : 'آخر',
+                                  custom_value: null,
+                                  property_name: grand_child_property.name,
+                                },
+                              ]"
+                              :placeholder="`Select ${grand_child_property.name}`"
+                              option-attribute="name"
+                              searchable
+                              :searchable-placeholder="`Search a ${grand_child_property.name}...`"
+                            />
+                          </UFormGroup>
+                          <!-- Show Input Text only if user Choose Other -->
+                          <UFormGroup
+                            v-if="
+                              state.properties &&
+                              state.properties[index] &&
+                              state.properties[index].childs &&
+                              state.properties[index].childs[child_index] &&
+                              state.properties[index].childs[child_index]
+                                .childs &&
+                              state.properties[index].childs[child_index]
+                                .childs[grand_child_index]?.id === 'other'
+                            "
+                            class="ps-5 pt-5"
+                            :label="`Custom ${grand_child_property.name}`"
+                            :name="`Custom ${grand_child_property.name}`"
+                          >
+                            <UInput
+                              placeholder="Enter Custom Value"
+                              class="ps-10 mt-3"
+                              v-model="
+                                state.properties[index].childs[child_index]
+                                  .childs[grand_child_index].custom_value
+                              "
+                            />
+                          </UFormGroup>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </template>
         </template>
         <PropertiesSkelton v-else />
@@ -120,25 +287,69 @@
                 colspan="2"
                 class="py-3 px-4 font-bold text-primary text-center text-lg"
               >
-                Properties
+                <h2 class="text-2xl pt-5">Properties</h2>
+                <template v-if="data_to_display.properties?.length > 0">
+                  <div v-for="property in data_to_display.properties">
+                    <div class="border-b p-5 flex justify-between">
+                      <div class="text-gray-900">
+                        {{ property?.property_name }}
+                      </div>
+                      <div class="text-Tprimary-700">
+                        {{
+                          property?.custom_value
+                            ? property?.custom_value + " (Custom Value)"
+                            : property?.name
+                        }}
+                      </div>
+                    </div>
+
+                    <template v-if="property.childs">
+                      <div
+                        class="px-10"
+                        v-for="child_property in property.childs"
+                      >
+                        <div>
+                          <div class="border-b p-5 flex justify-between">
+                            <div class="text-gray-900">
+                              {{ child_property?.property_name }}
+                            </div>
+                            <div class="text-Tprimary-700">
+                              {{
+                                child_property?.custom_value
+                                  ? child_property?.custom_value +
+                                    " (Custom Value)"
+                                  : child_property?.name
+                              }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <template v-if="child_property.childs">
+                          <div
+                            class="px-10"
+                            v-for="grand_child_property in child_property.childs"
+                          >
+                            <div class="border-b p-5 flex justify-between">
+                              <div class="text-gray-900">
+                                {{ grand_child_property?.property_name }}
+                              </div>
+                              <div class="text-Tprimary-700">
+                                {{
+                                  grand_child_property?.custom_value
+                                    ? grand_child_property?.custom_value +
+                                      " (Custom Value)"
+                                    : grand_child_property?.name
+                                }}
+                              </div>
+                            </div>
+                          </div>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+                </template>
               </td>
             </tr>
-
-            <!-- Properties -->
-            <template v-for="property in data_to_display.properties">
-              <tr class="border-b" v-if="property?.property_name">
-                <td class="py-3 px-4 text-darkColor">
-                  {{ property?.property_name }}
-                </td>
-                <td class="py-3 px-4 text-darkColor">
-                  {{
-                    property?.custom_value
-                      ? property?.custom_value + " (Custom Value)"
-                      : property?.name
-                  }}
-                </td>
-              </tr>
-            </template>
           </tbody>
         </table>
       </div>
@@ -172,19 +383,58 @@ const validate = (state: any) => {
   const errors: { path: any; message: string }[] = [];
 
   state.properties.forEach((property) => {
-    if (!property.id && property.hasOptions) {
+    // Level 1
+    if (!property.id) {
       errors.push({
         path: property.name,
         message: `${property.name} is required`,
       });
     }
+    if (property.id == "other" && !property.custom_value) {
+      errors.push({
+        path: `Custom ${property.property_name}`,
+        message: `${property.property_name} is required`,
+      });
+    }
 
-    // if (property.id == "other" && !property.custom_value) {
-    //   errors.push({
-    //     path: `custom ${property.name}`,
-    //     message: `Custom ${property.name} Property Name is required`,
-    //   });
-    // }
+    // Level 2
+    if (property.childs?.length > 0) {
+      property.childs.forEach((child_property) => {
+        if (!child_property.id && child_property.hasOptions) {
+          errors.push({
+            path: child_property.name,
+            message: `${child_property.name} is required`,
+          });
+        }
+        if (child_property.id == "other" && !child_property.custom_value) {
+          errors.push({
+            path: `Custom ${child_property.property_name}`,
+            message: `${child_property.property_name} is required`,
+          });
+        }
+
+        // Level 3
+        if (child_property.childs?.length > 0) {
+          child_property.childs.forEach((grand_child_property) => {
+            if (!grand_child_property.id && grand_child_property.hasOptions) {
+              errors.push({
+                path: grand_child_property.name,
+                message: `${grand_child_property.name} is required`,
+              });
+            }
+            if (
+              grand_child_property.id == "other" &&
+              !grand_child_property.custom_value
+            ) {
+              errors.push({
+                path: `Custom ${grand_child_property.property_name}`,
+                message: `${grand_child_property.property_name} is required`,
+              });
+            }
+          });
+        }
+      });
+    }
   });
 
   return errors;
@@ -249,34 +499,85 @@ watch(
   }
 );
 
-const toast = useToast();
+const optioSelected = async (
+  current_index,
+  parent_index = false,
+  grand_parent_index = false,
+  e
+) => {
+  if (e.id == "other") {
+    if (parent_index === false) {
+      state.properties[current_index].childs = null;
+      sub_category_properties.value[current_index].childs = null;
+    } else if (grand_parent_index === false) {
+      state.properties[parent_index].childs[current_index].childs = null;
+      sub_category_properties.value[parent_index].childs[current_index].childs =
+        null;
+    } else {
+      state.properties[grand_parent_index].childs[parent_index].childs[
+        current_index
+      ].childs = null;
+      sub_category_properties.value[grand_parent_index].childs[
+        parent_index
+      ].childs[current_index].childs = null;
+    }
+
+    return;
+  }
+
+  const childs = await lookupsService().get_option_childs(e.id);
+  if (childs?.length > 0) {
+    if (parent_index === false) {
+      sub_category_properties.value[current_index].childs = childs;
+
+      state.properties[current_index].childs = [];
+      childs.forEach((child) => {
+        state.properties[current_index].childs.push({
+          name: child.name,
+          hasOptions: child.options?.length > 0,
+        });
+      });
+    } else if (grand_parent_index === false) {
+      sub_category_properties.value[parent_index].childs[current_index].childs =
+        childs;
+
+      state.properties[parent_index].childs[current_index].childs = [];
+      childs.forEach((child) => {
+        state.properties[parent_index].childs[current_index].childs.push({
+          name: child.name,
+          hasOptions: child.options?.length > 0,
+        });
+      });
+    } else {
+      sub_category_properties.value[grand_parent_index].childs[
+        parent_index
+      ].childs[current_index].childs = childs;
+
+      state.properties[grand_parent_index].childs[parent_index].childs[
+        current_index
+      ].childs = [];
+      childs.forEach((child) => {
+        state.properties[grand_parent_index].childs[parent_index].childs[
+          current_index
+        ].childs.push({
+          name: child.name,
+          hasOptions: child.options?.length > 0,
+        });
+      });
+    }
+  }
+};
+
 // ====== Submit Form
+const toast = useToast();
 const submit_loading = ref(false);
 const data_to_display = ref(null);
 async function onSubmit(event) {
   submit_loading.value = true;
 
-  let failed = false;
-
-  // Check if all properties with custom_value are filled
-  event.data?.properties?.forEach((property) => {
-    if (property.id === "other" && !property.custom_value) {
-      failed = true;
-
-      toast.add({
-        color: "red",
-        id: "fill_all_cutom_values",
-        title: "Please Fill All Cutome values",
-      });
-    }
-  });
-  if (failed) {
-    submit_loading.value = false;
-    return;
-  }
-
   setTimeout(() => {
     data_to_display.value = event.data;
+    console.log(data_to_display.value);
     submit_loading.value = false;
   }, 300);
 }
