@@ -1,4 +1,4 @@
-# Nuxt UI Minimal Starterjjjjjjjjjjj
+# Nuxt UI Minimal Starterjjjjjjjjjjjfkgjsklfgrfgsdfgasdfa
 
 Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
 
